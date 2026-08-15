@@ -2,7 +2,6 @@ interface CellProps {
   latter: string;
   secretWord: string;
   index: number;
-  board: string[];
   submittedRows: number[];
 }
 
@@ -10,25 +9,39 @@ export default function Cell({
   latter,
   secretWord,
   index,
-  board,
   submittedRows,
 }: CellProps) {
-  const letter = latter?.toUpperCase();
+  const letter = latter.toUpperCase();
   const word = secretWord.toUpperCase();
 
+  // Example:
+  // index 0-4  -> row 0
+  // index 5-9  -> row 1
+  // index 10-14 -> row 2
   const row = Math.floor(index / 5);
+
+  // Position inside the row
+  // 0, 1, 2, 3, 4
   const column = index % 5;
 
+  // Only show result after pressing Enter
   const isSubmitted = submittedRows.includes(row);
 
   let backgroundColor = "gray";
 
   if (isSubmitted) {
+    // Correct letter + correct position
     if (letter === word[column]) {
       backgroundColor = "green";
-    } else if (word.includes(letter)) {
+    }
+
+    // Correct letter + wrong position
+    else if (word.includes(letter)) {
       backgroundColor = "gold";
-    } else {
+    }
+
+    // Letter doesn't exist
+    else {
       backgroundColor = "gray";
     }
   }
