@@ -1,0 +1,14 @@
+.cell {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  gap: 4px;
+}
